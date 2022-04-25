@@ -101,7 +101,7 @@ function setup() {
 
 function mouseClicked() {
   if (!music.isPlaying()) {
-    music.play()
+    //music.play()
   }
   if (menu) {
     menu=false
