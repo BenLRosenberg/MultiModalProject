@@ -38,7 +38,6 @@ class Ground {
     }
 
     show() {
-        
         for (let i=0;i<this.plan.length;i++) {
             if (this.plan[i] || end) {
                 push();

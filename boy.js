@@ -20,6 +20,9 @@ class Boy {
     reset() {
         this.pos = createVector(this.init.x, height-10)
         this.vel = createVector(0, -100)
+        if (end) {
+            //this.acc.y = 0
+        }
         this.alive = true
         this.fallBounds = []
         this.deadTime = -1
@@ -31,10 +34,10 @@ class Boy {
         if (this.alive) {
             this.vel.add(this.acc)
             this.pos.add(this.vel)
-            if (this.vel.y < -0.1) {
+            if (this.vel.y < -0.1 && !zoomOut) {
                 this.vel.limit(15)
             }
-            this.vel.x *= 0.8
+            //this.vel.x *= 0.8
 
         } else {
             if (frameCount - this.deadTime > 30) {
@@ -42,7 +45,7 @@ class Boy {
             }
         }
         
-        if (this.pos.y > height + 10*this.r && this.alive) {
+        if (this.pos.y > height + 10*this.r && this.alive && !end) {
             this.alive = false
             this.deadTime = frameCount
             readStart = frameCount
@@ -67,7 +70,7 @@ class Boy {
     }
 
     collide(g) {
-        if ((g.support(this.pos.x-this.width/2) || g.support(this.pos.x+this.width/2)) && this.alive) {
+        if ((g.support(this.pos.x-this.width/2) || g.support(this.pos.x+this.width/2)) && this.alive && !zoomOut) {
             //console.log('boing')
             let y = height-g.thickness+5
             let cross = y - this.pos.y - this.r - 1
